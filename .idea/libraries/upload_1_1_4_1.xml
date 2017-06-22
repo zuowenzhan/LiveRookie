@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="upload_1.1.4.1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/app/src/main/jniLibs/upload_1.1.4.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

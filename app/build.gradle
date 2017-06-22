@@ -1,0 +1,59 @@
+apply plugin: 'com.android.application'
+apply plugin: 'android-apt'
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.3"
+
+    defaultConfig {
+        applicationId "com.projectdemo.zwz.liverookie"
+        minSdkVersion 15
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+
+//推荐使用最高的API Level
+        renderscriptTargetApi 15
+        //指定在运行的设备不是target version的时候，生成的字节码需要回滚到兼容的版本
+        renderscriptSupportModeEnabled true
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            //shrinkResources为true在打包时会删除没有用到的资源
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:23.4.0'
+    compile 'com.android.support:design:23.4.0'
+    compile 'com.android.support:recyclerview-v7:23.4.0'
+
+    compile 'com.zhy:okhttputils:2.6.2'
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+    compile 'com.zhy:autolayout:1.4.5'
+    compile 'com.google.code.gson:gson:2.3.1'
+
+//腾讯云直播
+    compile files('src/main/jniLibs/bugly_crash_release.jar')
+    compile files('src/main/jniLibs/imsdk.jar')
+    compile files('src/main/jniLibs/mobilepb.jar')
+    compile files('src/main/jniLibs/nineoldandroids-2.4.0.jar')
+    compile files('src/main/jniLibs/qalsdk.jar')
+    compile files('src/main/jniLibs/soload.jar')
+    compile files('src/main/jniLibs/tls_sdk.jar')
+    compile files('src/main/jniLibs/txrtmpsdk.jar')
+    compile files('src/main/jniLibs/upload_1.1.4.1.jar')
+    compile files('src/main/jniLibs/wup-1.0.0-SNAPSHOT.jar')
+
+    //butterknife
+    compile 'com.jakewharton:butterknife:8.1.0'
+    apt 'com.jakewharton:butterknife-compiler:8.1.0'
+
+    //android上开源弹幕解析绘制引擎项目
+    compile 'com.github.ctiao:dfm:0.4.4'
+}

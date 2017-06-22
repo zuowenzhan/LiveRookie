@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="tls_sdk">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/app/src/main/jniLibs/tls_sdk.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
