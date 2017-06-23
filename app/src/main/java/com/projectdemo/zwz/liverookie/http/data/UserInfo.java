@@ -17,12 +17,12 @@ public class UserInfo extends IDontObfuscate {
     public String sigId;
     public String sdkAppId;
     public String sdkAccountType;
-    public String sex;
+    public int sex;
 
     public UserInfo() {
     }
 
-    public UserInfo(String userId, String nickname, String headPic, String sex) {
+    public UserInfo(String userId, String nickname, String headPic, int sex) {
         this.userId = userId;
         this.nickname = nickname;
         this.headPic = headPic;
@@ -34,6 +34,10 @@ public class UserInfo extends IDontObfuscate {
         LiveSharedPreferenceUtils.getInstance().putString(context, "nickname", nickname);
         LiveSharedPreferenceUtils.getInstance().putString(context, "headPic", headPic);
         LiveSharedPreferenceUtils.getInstance().putString(context, "sigId", sigId);
+    }
+
+    public static void saveCache(Context context ,UserInfo info){
+        saveCache(context, info.userId, info.nickname, info.headPic, info.sigId);
     }
 
     public static UserInfo getCache(Context context) {

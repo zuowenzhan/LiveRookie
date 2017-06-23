@@ -8,16 +8,16 @@ import com.projectdemo.zwz.liverookie.base.BaseActivity;
 
 public class LoginActivity extends BaseActivity {
 
-
     @Override
     protected void initView() {
-      setContentView(R.layout.activity_login);
+         setContentView(R.layout.activity_login);
     }
 
     @Override
     protected void initData() {
 
     }
+
 
 
     public static void invoke(Context context) {

@@ -5,31 +5,27 @@ import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.PersistableBundle;
 import android.support.v4.app.FragmentActivity;
 import android.text.TextUtils;
+import android.view.View;
 import android.widget.Toast;
 
+
 /**
- * Created by ylzx on
- *界面抽取
- * 包括标题、网络、图片加载
+ * @Description:界面的抽取，包括标题、网络、图片加载
  */
-public abstract class BaseActivity extends FragmentActivity{
-
-
+public abstract class BaseActivity extends FragmentActivity {
     protected Context mContext;
     protected Handler mHandler = new Handler();
-
     /**
      * 图片加载
      */
     public ActionBar actionBar;
 
-    @Override
-    public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
-        super.onCreate(savedInstanceState, persistentState);
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         setBeforeLayout();
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         mContext=this;
@@ -38,17 +34,23 @@ public abstract class BaseActivity extends FragmentActivity{
         initData();
 
     }
-    protected void setBeforeLayout(){}
 
+    protected void setBeforeLayout(){}
 
 
     /**
      * 此方法描述的是： 初始化所有view
+     *
+     * @author: Andruby
+     * @version: 2014-3-12 下午3:17:28
      */
     protected abstract void initView();
 
     /**
      * 此方法描述的是： 初始化所有数据的方法
+     *
+     * @author: Andruby
+     * @version: 2014-3-12 下午3:17:46
      */
     protected abstract void initData();
 
@@ -60,6 +62,9 @@ public abstract class BaseActivity extends FragmentActivity{
     }
 
 
+    public <T extends View> T obtainView(int resId) {
+        return (T) findViewById(resId);
+    }
 
     /**
      * 显示toast
@@ -104,7 +109,5 @@ public abstract class BaseActivity extends FragmentActivity{
     protected void onDestroy() {
         super.onDestroy();
     }
-
-
 
 }
