@@ -94,11 +94,26 @@
         <activity
             android:name="com.tencent.rtmp.video.TXScreenCapture$TXScreenCaptureAssistantActivity"
             android:theme="@android:style/Theme.Translucent" />
+
+        <activity
+            android:name="com.projectdemo.zwz.liverookie.MainActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"/>
+
+
         <activity
             android:name=".activity.LoginActivity"
             android:screenOrientation="portrait"
             android:theme="@style/LoginTheme" />
-        <activity android:name=".activity.RegisterActivity"></activity>
+
+
+
+        <activity android:name=".activity.RegisterActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/RegisterTheme"/>
+
+
+
     </application>
 
 </manifest>
