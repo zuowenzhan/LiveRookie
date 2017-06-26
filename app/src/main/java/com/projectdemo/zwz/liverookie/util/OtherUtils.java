@@ -289,7 +289,6 @@ public class OtherUtils {
 
 	/**
 	 * 在按钮上启动一个定时器
-	 *
 	 * @param tvVerifyCode  验证码控件
 	 * @param defaultString 按钮上默认的字符串
 	 * @param max           失效时间（单位：s）

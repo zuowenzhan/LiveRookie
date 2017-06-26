@@ -29,32 +29,34 @@ public abstract class BaseActivity extends FragmentActivity {
         setBeforeLayout();
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         mContext=this;
-
+        if (getLayoutId() != 0) {
+            setContentView(getLayoutId());
+        }
         initView();
         initData();
-
+        setListener();
     }
 
     protected void setBeforeLayout(){}
-
+    /**
+     * 返回当前界面布局文件
+     */
+    protected abstract int getLayoutId();
 
     /**
      * 此方法描述的是： 初始化所有view
-     *
-     * @author: Andruby
-     * @version: 2014-3-12 下午3:17:28
      */
     protected abstract void initView();
 
     /**
      * 此方法描述的是： 初始化所有数据的方法
-     *
-     * @author: Andruby
-     * @version: 2014-3-12 下午3:17:46
      */
     protected abstract void initData();
 
-
+    /**
+     * 此方法描述的是： 设置所有事件监听
+     */
+    protected abstract void setListener();
 
     @Override
     protected void onResume() {

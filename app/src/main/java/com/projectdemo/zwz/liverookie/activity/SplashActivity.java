@@ -22,6 +22,11 @@ public class SplashActivity extends BaseActivity {
 
 
 	@Override
+	protected int getLayoutId() {
+		return 0;
+	}
+
+	@Override
 	protected void initView() {
 
 	}
@@ -42,6 +47,11 @@ public class SplashActivity extends BaseActivity {
 		msg.arg1 = START_LOGIN;
 		mHandler.sendMessageDelayed(msg, 1000);
 
+
+	}
+
+	@Override
+	protected void setListener() {
 
 	}
 
