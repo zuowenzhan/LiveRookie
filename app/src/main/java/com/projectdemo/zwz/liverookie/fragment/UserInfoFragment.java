@@ -15,6 +15,11 @@ public class UserInfoFragment extends BaseFragment {
     }
 
     @Override
+    protected void setListener(View view) {
+
+    }
+
+    @Override
     protected int getLayoutId() {
         return R.layout.fragment_user_info;
     }
@@ -24,8 +29,5 @@ public class UserInfoFragment extends BaseFragment {
 
     }
 
-    @Override
-    protected void setListener() {
 
-    }
 }

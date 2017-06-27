@@ -230,4 +230,10 @@
     <string name="live_setting_beauty_open">开美颜</string>
     <string name="live_setting_beauty_close">关美颜</string>
     <string name="live_setting_music">音效</string>
+
+
+    <string name="loading_ing">正在加载…</string>
+    <string name="mores">更多</string>
+    <string name="networkerror_retry">网络异常，上拉重试</string>
+    <string name="no_more_data_and_click">已加载全部内容 点击刷新</string>
 </resources>

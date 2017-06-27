@@ -1,58 +1,53 @@
 package com.projectdemo.zwz.liverookie.base;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 public abstract class BaseFragment extends Fragment {
-	/**
-	 * 图片加载
-	 */
-	protected View mRootView;
-	protected Intent mBundleIntent;
-
+	protected BaseActivity mContext;
+	protected Handler mHandler = new Handler();
+	protected View rootView;
 
 	@Override
-	public void onCreate(Bundle savedInstanceState) {
+	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		mContext = (BaseActivity) getActivity();
 	}
 
+	@Nullable
 	@Override
-	public void onAttach(Activity activity) {
-		super.onAttach(activity);
-
-	}
-
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-							 Bundle savedInstanceState) {
+	public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 		if (getLayoutId() != 0) {
-			mRootView = inflater.inflate(getLayoutId(), container, false);
+			rootView = inflater.inflate(getLayoutId(), container, false);
+		} else {
+			try {
+				throw new Exception("layout is empty");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
-		initView(mRootView);
-		setUserVisibleHint(true);
-		setListener();
+		initView(rootView);
 		initData();
-		return mRootView;
+		setListener(rootView);
+		return rootView;
 	}
 
-	@Override
-	public void onHiddenChanged(boolean hidden) {
-		if (hidden) {
-			mBundleIntent = null;
-		}
-		super.onHiddenChanged(hidden);
-	}
+	/**
+	 * 返回当前界面布局文件
+	 */
+	protected abstract int getLayoutId();
 
-	@Override
-	public void setUserVisibleHint(boolean isVisibleToUser) {
-		// TODO Auto-generated method stub
-		super.setUserVisibleHint(isVisibleToUser);
-	}
+	/**
+	 * 此方法描述的是： 初始化所有view
+	 */
+	protected abstract void initView(View view);
 
 	/**
 	 * 此方法描述的是： 初始化所有数据的方法
@@ -60,47 +55,48 @@ public abstract class BaseFragment extends Fragment {
 	protected abstract void initData();
 
 	/**
-	 * 此方法描述的是： 获取布局
+	 * 此方法描述的是： 设置所有事件监听
 	 */
-	protected abstract int getLayoutId();
+	protected abstract void setListener(View view);
+
 
 	/**
-	 * 此方法描述的是： 初始化界面
+	 * 显示toast
+	 *
+	 * @param resId
 	 */
-	protected abstract void initView(View rootView);
-
-	/**
-	 * 此方法描述的是： 初始化界面
-	 */
-	protected abstract void setListener();
-
-	/**
-	 * 重写ActionBar
-	 */
-	public void initActionBar(Activity activity) {
-
+	public void showToast(final int resId) {
+		showToast(getString(resId));
 	}
 
-	public void setBundleIntent(Intent intent) {
-		mBundleIntent = intent;
-	}
 
 	public <T extends View> T obtainView(int resId) {
-		return (T) mRootView.findViewById(resId);
-	}
-
-	@Override
-	public void onDestroy() {
-		super.onDestroy();
-
+		return (T) rootView.findViewById(resId);
 	}
 
 	/**
-	 * description:按返回时的操作
+	 * 显示toast
+	 *
+	 * @param resStr
+	 * @return Toast对象，便于控制toast的显示与关闭
 	 */
+	public Toast showToast(final String resStr) {
 
-	public void onBackPressed() {
+		if (TextUtils.isEmpty(resStr)) {
+			return null;
+		}
 
+		Toast toast = null;
+
+		mHandler.post(new Runnable() {
+			@Override
+			public void run() {
+				Toast toast = Toast.makeText(mContext, resStr,
+						Toast.LENGTH_SHORT);
+				toast.show();
+			}
+		});
+		return toast;
 	}
 
 }

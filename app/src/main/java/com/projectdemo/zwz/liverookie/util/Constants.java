@@ -8,6 +8,9 @@ package com.projectdemo.zwz.liverookie.util;
  */
 public class Constants {
 
+    public static final int PAGESIZE = 10; //测试加载更多
+//	public static final int PAGESIZE = 20;
+
     /**
      * 腾讯云服务配置专区（请自主替换）发布使用
      */

@@ -28,6 +28,11 @@ public class LiveMainFragment extends BaseFragment {
     }
 
     @Override
+    protected void setListener(View view) {
+
+    }
+
+    @Override
     protected int getLayoutId() {
         return R.layout.fragment_live_main;
     }
@@ -46,8 +51,5 @@ public class LiveMainFragment extends BaseFragment {
         mTabStrip.setUnderlineHeight(1);
     }
 
-    @Override
-    protected void setListener() {
 
-    }
 }
